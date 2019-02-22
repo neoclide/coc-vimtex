@@ -1,0 +1,56 @@
+{
+  "name": "coc-vimtex",
+  "version": "1.0.0",
+  "description": "vimtex integration for coc.nvim",
+  "main": "src/index.js",
+  "publisher": "chemzqm",
+  "keywords": [
+    "coc.nvim",
+    "vimtex"
+  ],
+  "engines": {
+    "coc": "^0.0.56"
+  },
+  "activationEvents": [
+    "onLanguage:tex"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "properties": {
+        "coc.source.vimtex.disableSyntaxes": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
+        },
+        "coc.source.vimtex.enable": {
+          "type": "boolean",
+          "default": true
+        },
+        "coc.source.vimtex.priority": {
+          "type": "integer",
+          "default": 99
+        },
+        "coc.source.vimtex.shortcut": {
+          "type": "string",
+          "default": "TEX"
+        }
+      }
+    }
+  },
+  "author": "chemzqm@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neoclide/coc-vimtex.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@chemzqm/tslint-config": "^1.0.18",
+    "@types/node": "^10.12.24",
+    "coc.nvim": "^0.0.56",
+    "rimraf": "^2.6.3"
+  },
+  "dependencies": {}
+}
