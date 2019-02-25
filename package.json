@@ -18,13 +18,6 @@
     "configuration": {
       "type": "object",
       "properties": {
-        "coc.source.vimtex.disableSyntaxes": {
-          "type": "array",
-          "default": [],
-          "items": {
-            "type": "string"
-          }
-        },
         "coc.source.vimtex.enable": {
           "type": "boolean",
           "default": true
@@ -32,10 +25,6 @@
         "coc.source.vimtex.priority": {
           "type": "integer",
           "default": 99
-        },
-        "coc.source.vimtex.shortcut": {
-          "type": "string",
-          "default": "TEX"
         }
       }
     }

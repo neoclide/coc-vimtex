@@ -3,8 +3,6 @@ const { convertRegex, byteSlice } = require('./util')
 
 exports.activate = async context => {
   let config = workspace.getConfiguration('coc.source.vimtex')
-  let shortcut = config.get('shortcut', '')
-  let menu = shortcut ? '[' + shortcut + ']' : ''
   let { nvim } = workspace
 
   let regex = await nvim.getVar('vimtex#re#deoplete')
@@ -15,16 +13,14 @@ exports.activate = async context => {
   regex = regex.slice(2, regex.length)
   let pattern = new RegExp(convertRegex(regex) + '$')
 
-  function convertToItems(list, extra) {
+  function convertItems(list) {
     let res = []
-    extra = extra || {}
     for (let item of list) {
       if (typeof item == 'string') {
-        res.push(Object.assign({ word: item }, { menu }, extra))
+        res.push(Object.assign({ word: item }))
       }
       if (item.hasOwnProperty('word')) {
-        if (item.menu) extra.info = item.menu
-        res.push(Object.assign(item, extra))
+        res.push(item)
       }
     }
     return res
@@ -51,14 +47,12 @@ exports.activate = async context => {
       }
       // invalid startcol
       if (isNaN(startcol) || startcol < 0 || startcol > colnr) return null
-      let text = byteSlice(line, startcol, colnr)
+      let text = byteSlice(line, startcol, colnr - 1)
       let words = await nvim.call(func, [0, text])
       if (words.hasOwnProperty('words')) {
         words = words.words
       }
-      let res = {
-        items: convertToItems(words)
-      }
+      let res = { items: convertItems(words) }
       res.startcol = startcol
       return res
     }
