@@ -12,7 +12,9 @@
     "coc": "^0.0.56"
   },
   "activationEvents": [
-    "onLanguage:tex"
+    "onLanguage:tex",
+    "onLanguage:plaintex",
+    "onLanguage:latex"
   ],
   "contributes": {
     "configuration": {

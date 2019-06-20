@@ -1,9 +1,9 @@
-const { sources, workspace, SourceType } = require('coc.nvim')
-const { convertRegex, byteSlice } = require('./util')
+const {sources, workspace, SourceType} = require('coc.nvim')
+const {convertRegex, byteSlice} = require('./util')
 
 exports.activate = async context => {
   let config = workspace.getConfiguration('coc.source.vimtex')
-  let { nvim } = workspace
+  let {nvim} = workspace
 
   let regex = await nvim.getVar('vimtex#re#deoplete')
   if (!regex) {
@@ -17,7 +17,7 @@ exports.activate = async context => {
     let res = []
     for (let item of list) {
       if (typeof item == 'string') {
-        res.push(Object.assign({ word: item }))
+        res.push(Object.assign({word: item}))
       }
       if (item.hasOwnProperty('word')) {
         res.push(item)
@@ -34,9 +34,9 @@ exports.activate = async context => {
     sourceType: SourceType.Remote,
     triggerPatterns: [pattern],
     doComplete: async opt => {
-      let { nvim } = workspace
+      let {nvim} = workspace
       let func = 'vimtex#complete#omnifunc'
-      let { line, colnr, col } = opt
+      let {line, colnr, col} = opt
       let startcol = col
       try {
         startcol = await nvim.call(func, [1, ''])
@@ -52,7 +52,7 @@ exports.activate = async context => {
       if (words.hasOwnProperty('words')) {
         words = words.words
       }
-      let res = { items: convertItems(words) }
+      let res = {items: convertItems(words)}
       res.startcol = startcol
       return res
     }
