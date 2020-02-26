@@ -38,9 +38,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@chemzqm/tslint-config": "^1.0.18",
     "@types/node": "^10.12.24",
-    "coc.nvim": "^0.0.56",
+    "coc.nvim": "^0.0.74",
     "rimraf": "^2.6.3"
   },
   "dependencies": {}
