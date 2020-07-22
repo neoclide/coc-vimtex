@@ -1,6 +1,6 @@
 {
   "name": "coc-vimtex",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "vimtex integration for coc.nvim",
   "main": "src/index.js",
   "publisher": "chemzqm",
