@@ -10,7 +10,6 @@ exports.activate = async context => {
     workspace.showMessage('vimtex not loaded', 'error')
     return
   }
-  regex = regex.slice(2, regex.length)
   let pattern = new RegExp(convertRegex(regex) + '$')
 
   function convertItems(list) {

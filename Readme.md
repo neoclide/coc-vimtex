@@ -10,6 +10,8 @@ In your vim/neovim, run command:
 :CocInstall coc-vimtex
 ```
 
+Or add this plugin's folder to your vim's runtimepath.
+
 ## Options
 
 - `coc.source.vimtex.disableSyntaxes` disabled syntax names.
