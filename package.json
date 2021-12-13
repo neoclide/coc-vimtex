@@ -29,6 +29,10 @@
         "coc.source.vimtex.priority": {
           "type": "integer",
           "default": 99
+        },
+        "coc.source.vimtex.filetypes": {
+          "type": "array",
+          "default": ["tex", "plaintex", "latex"]
         }
       }
     }
