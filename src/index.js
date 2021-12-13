@@ -29,7 +29,7 @@ exports.activate = async context => {
     name: 'vimtex',
     enable: config.get('enable', true),
     priority: config.get('priority', 99),
-    filetypes: ['tex', 'plaintex', 'latex'],
+    filetypes: ['tex', 'plaintex', 'latex', 'markdown', 'pandoc'],
     sourceType: SourceType.Remote,
     triggerPatterns: [pattern],
     doComplete: async opt => {

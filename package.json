@@ -14,7 +14,9 @@
   "activationEvents": [
     "onLanguage:tex",
     "onLanguage:plaintex",
-    "onLanguage:latex"
+    "onLanguage:latex",
+    "onLanguage:markdown",
+    "onLanguage:pandoc"
   ],
   "contributes": {
     "configuration": {
