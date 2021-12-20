@@ -1,6 +1,6 @@
 {
   "name": "coc-vimtex",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "vimtex integration for coc.nvim",
   "main": "src/index.js",
   "publisher": "chemzqm",
@@ -32,7 +32,11 @@
         },
         "coc.source.vimtex.filetypes": {
           "type": "array",
-          "default": ["tex", "plaintex", "latex"]
+          "default": [
+            "tex",
+            "plaintex",
+            "latex"
+          ]
         }
       }
     }
@@ -45,7 +49,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^10.12.24",
-    "coc.nvim": "^0.0.74",
+    "coc.nvim": "^0.0.81-next.7",
     "rimraf": "^2.6.3"
   },
   "dependencies": {}
