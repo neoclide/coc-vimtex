@@ -1,13 +1,13 @@
 const {sources, workspace, SourceType} = require('coc.nvim')
 const {convertRegex, byteSlice} = require('./util')
 
-exports.activate = async context => {
+async function activate(context) {
   let config = workspace.getConfiguration('coc.source.vimtex')
   let {nvim} = workspace
 
   let regex = await nvim.getVar('vimtex#re#deoplete')
   if (!regex) {
-    workspace.showMessage('vimtex not loaded', 'error')
+    workspace.showMessage('vimtex not loaded, please check your runtimepath', 'error')
     return
   }
   let pattern = new RegExp(convertRegex(regex) + '$')
@@ -63,4 +63,27 @@ exports.activate = async context => {
       sources.removeSource(source)
     }
   })
+}
+
+exports.activate = async context => {
+  let config = workspace.getConfiguration('coc.source.vimtex')
+  let filetypes = config.get('filetypes', ['tex', 'latex', 'plaintex'])
+  let activated = false
+  let active = () => {
+    if (activated) return
+    activated = true
+    activate(context)
+  }
+  for (let doc of workspace.documents) {
+    if (filetypes.includes(doc.textDocument.languageId)) {
+      active()
+    }
+  }
+  if (!activated) {
+    workspace.onDidOpenTextDocument(e => {
+      if (filetypes.includes(e.languageId)) {
+        active()
+      }
+    }, null, context.subscriptions)
+  }
 }
