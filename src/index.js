@@ -5,8 +5,10 @@ async function activate(context) {
   let config = workspace.getConfiguration('coc.source.vimtex')
   let {nvim} = workspace
 
-  let regex = await nvim.getVar('vimtex#re#deoplete')
-  if (!regex) {
+  let regex
+  try {
+    regex = await nvim.eval('vimtex#re#deoplete')
+  } catch (e) {
     workspace.showMessage('vimtex not loaded, please check your runtimepath', 'error')
     return
   }
