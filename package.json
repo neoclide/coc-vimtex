@@ -37,6 +37,13 @@
             "plaintex",
             "latex"
           ]
+        },
+        "coc.source.vimtex.disableSyntaxes": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

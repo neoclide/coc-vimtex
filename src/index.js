@@ -32,6 +32,7 @@ async function activate(context) {
     enable: config.get('enable', true),
     priority: config.get('priority', 99),
     filetypes: config.get('filetypes', ['tex', 'latex', 'plaintex']),
+    disableSyntaxes: config.get('disableSyntaxes', []),
     sourceType: SourceType.Remote,
     triggerPatterns: [pattern],
     doComplete: async opt => {
