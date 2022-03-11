@@ -1,17 +1,22 @@
-const {sources, workspace, SourceType} = require('coc.nvim')
+const {sources, workspace, window, SourceType} = require('coc.nvim')
 const {convertRegex, byteSlice} = require('./util')
 
-async function activate(context) {
+async function activate(context, languageId) {
   let config = workspace.getConfiguration('coc.source.vimtex')
   let {nvim} = workspace
 
-  let regex
-  try {
-    regex = await nvim.eval('vimtex#re#deoplete')
-  } catch (e) {
-    workspace.showMessage('vimtex not loaded, please check your runtimepath', 'error')
-    return
+  let res = await nvim.eval('get(g:,"loaded_vimtex",0)')
+  if (res != 1) {
+    let res = await window.showErrorMessage(`Plugin vimtex not loaded, make sure it's loaded loaded on filetype: ${languageId}`, `Exclude ${languageId} in user configuration`)
+    if (res && res.startsWith('Exclude')) {
+      let c = workspace.getConfiguration('coc.source.vimtex')
+      let filetypes = c.get('filetypes', [])
+      filetypes = filetypes.filter(s => s !== languageId)
+      c.update('filetypes', filetypes, true)
+    }
+    return false
   }
+  let regex = await nvim.eval('vimtex#re#deoplete')
   let pattern = new RegExp(convertRegex(regex) + '$')
 
   function convertItems(list) {
@@ -66,26 +71,27 @@ async function activate(context) {
       sources.removeSource(source)
     }
   })
+  return true
 }
 
 exports.activate = async context => {
   let config = workspace.getConfiguration('coc.source.vimtex')
   let filetypes = config.get('filetypes', ['tex', 'latex', 'plaintex'])
   let activated = false
-  let active = () => {
+  let active = (languageId) => {
     if (activated) return
     activated = true
-    activate(context)
+    activate(context, languageId)
   }
   for (let doc of workspace.documents) {
     if (filetypes.includes(doc.textDocument.languageId)) {
-      active()
+      active(doc.languageId)
     }
   }
   if (!activated) {
     workspace.onDidOpenTextDocument(e => {
       if (filetypes.includes(e.languageId)) {
-        active()
+        active(e.languageId)
       }
     }, null, context.subscriptions)
   }

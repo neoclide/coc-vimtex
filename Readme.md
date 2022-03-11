@@ -2,6 +2,9 @@
 
 Tex completion source for [vimtex](https://github.com/lervag/vimtex).
 
+You may need configure `coc.sources.vimtex.filetypes` when you have vimtex lazy
+loaded for specific filetypes.
+
 ## Install
 
 In your vim/neovim, run command:
