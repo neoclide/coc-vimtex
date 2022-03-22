@@ -16,7 +16,7 @@ async function activate(context, languageId) {
     }
     return false
   }
-  let regex = await nvim.eval('vimtex#re#deoplete')
+  let regex = '\\\\(?:(?:\\w*cite|Cite)\\w*\\*?(?:\\s*\\[[^]]*\\]){0,2}\\s*{[^}]*|(?:\\w*cites|Cites)(?:\\s*\\([^)]*\\)){0,2}(?:(?:\\s*\\[[^]]*\\]){0,2}\\s*\\{[^}]*\\})*(?:\\s*\\[[^]]*\\]){0,2}\\s*\\{[^}]*|bibentry\\s*{[^}]*|(text|block)cquote\\*?(?:\\s*\\[[^]]*\\]){0,2}\\s*{[^}]*|(for|hy)\\w*cquote\\*?{[^}]*}(?:\\s*\\[[^]]*\\]){0,2}\\s*{[^}]*|defbibentryset{[^}]*}{[^}]*|\\w*ref(?:\\s*\\{[^}]*|range\\s*\\{[^,}]*(?:}{)?)|hyperref\\s*\\[[^]]*|includegraphics\\*?(?:\\s*\\[[^]]*\\]){0,2}\\s*\\{[^}]*|(?:include(?:only)?|input|subfile)\\s*\\{[^}]*|([cpdr]?(gls|Gls|GLS)|acr|Acr|ACR)[a-zA-Z]*\\s*\\{[^}]*|(ac|Ac|AC)\\s*\\{[^}]*|includepdf(\\s*\\[[^]]*\\])?\\s*\\{[^}]*|includestandalone(\\s*\\[[^]]*\\])?\\s*\\{[^}]*|(usepackage|RequirePackage|PassOptionsToPackage)(\\s*\\[[^]]*\\])?\\s*\\{[^}]*|documentclass(\\s*\\[[^]]*\\])?\\s*\\{[^}]*|begin(\\s*\\[[^]]*\\])?\\s*\\{[^}]*|end(\\s*\\[[^]]*\\])?\\s*\\{[^}]*|\\w*)'
   let pattern = new RegExp(convertRegex(regex) + '$')
 
   function convertItems(list) {
