@@ -5,7 +5,7 @@ Tex completion source for [vimtex](https://github.com/lervag/vimtex).
 You may need configure `coc.sources.vimtex.filetypes` when you have vimtex lazy
 loaded for specific filetypes.
 
-**Note** iletype `tex` is mapped to `latex` with coc.nvim.
+**Note** filetype `tex` is mapped to `latex` with coc.nvim.
 
 ## Install
 
